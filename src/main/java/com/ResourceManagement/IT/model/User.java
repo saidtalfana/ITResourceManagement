@@ -1,14 +1,13 @@
 package com.ResourceManagement.IT.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.parameters.P;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,4 +18,12 @@ public class User extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
+
+
+
+    @OneToMany(mappedBy = "user")
+    private Set<Ticket> tickets= new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<Equipment> Equipements= new HashSet<>();
 }

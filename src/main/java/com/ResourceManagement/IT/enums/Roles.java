@@ -1,8 +1,15 @@
 package com.ResourceManagement.IT.enums;
 
-public enum Roles {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Roles implements GrantedAuthority {
 
     USER,
     ADMIN,
-    TECHNICIAN
+    TECHNICIAN;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }

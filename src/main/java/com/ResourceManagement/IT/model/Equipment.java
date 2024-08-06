@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class Equipement {
+public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int equipmentId;
