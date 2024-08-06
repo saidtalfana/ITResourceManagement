@@ -2,10 +2,7 @@ package com.ResourceManagement.IT.model;
 
 
 import com.ResourceManagement.IT.enums.EquipmentStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +22,22 @@ public class Equipment {
     private String image;
     private String type;
     private EquipmentStatus equipmentStatus;
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "admin_id")
+     private Admin admin;
+
+    @ManyToOne
+    @JoinColumn(name = "ticket_id")
+    private Ticket ticket;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
 
 
 }

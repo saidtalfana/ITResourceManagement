@@ -1,14 +1,14 @@
 package com.ResourceManagement.IT.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,4 +19,12 @@ public class Technician extends Person{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int technicianId;
+
+
+
+    @OneToMany(mappedBy = "technician")
+    private Set<Ticket> tickets= new HashSet<>();
+
+    @OneToMany(mappedBy = "technician")
+    private Set<Equipment> equipment= new HashSet<>();
 }
