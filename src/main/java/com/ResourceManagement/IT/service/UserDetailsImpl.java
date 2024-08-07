@@ -1,4 +1,4 @@
-
+package com.ResourceManagement.IT.service;
 
 
 import com.ResourceManagement.IT.model.Person;
@@ -10,16 +10,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonDetailsImpl implements UserDetailsService {
+public class UserDetailsImpl implements UserDetailsService {
     @Autowired
     private PersonRepository personRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Person person = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found with username: " + username);
+        Person person = personRepository.findBYUsername(username);
+        if (person == null) {
+            throw new UsernameNotFoundException("person not found with username: " + username);
         }
-        return user;
+        return person;
     }
 }

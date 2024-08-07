@@ -1,14 +1,20 @@
 package com.ResourceManagement.IT.config;
 
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
 import java.util.Set;
 
+
 @Service
 public class JwtAuth {
+
+
 
     public static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 

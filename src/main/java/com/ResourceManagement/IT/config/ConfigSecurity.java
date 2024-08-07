@@ -1,5 +1,7 @@
 package com.ResourceManagement.IT.config;
 
+import com.ResourceManagement.IT.model.Person;
+import com.ResourceManagement.IT.service.UserDetailsImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -34,7 +36,7 @@ public class ConfigSecurity {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(expressionInterceptUrlRegistry ->
                         expressionInterceptUrlRegistry
-                                .requestMatchers("/api/user/login", "/api/user/signup").permitAll()
+                                .requestMatchers("/api/user/one").permitAll()
                                 .requestMatchers(HttpMethod.DELETE ,  "/api/user/delete/**").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.GET, "/api/events/**").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers(HttpMethod.POST, "/api/reservations/**").hasRole("USER")
