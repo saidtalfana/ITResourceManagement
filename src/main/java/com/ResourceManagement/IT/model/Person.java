@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @Setter
 @Getter
 @Entity
+
 public class Person implements UserDetails {
 
     @Id

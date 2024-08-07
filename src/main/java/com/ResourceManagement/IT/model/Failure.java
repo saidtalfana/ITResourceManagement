@@ -14,6 +14,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
+@Table(name = "Failures")
 public class Failure {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -15,6 +15,7 @@ import java.sql.Time;
 @Setter
 @Getter
 @Entity
+@Table(name = "ticket")
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

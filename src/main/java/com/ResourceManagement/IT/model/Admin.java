@@ -15,7 +15,8 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-public class Admin extends Person{
+@Table(name = "users")
+public class Admin {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int adminId;

@@ -15,7 +15,8 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-public class Technician extends Person{
+@Table(name = "Technicians")
+public class Technician {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int technicianId;
@@ -26,5 +27,5 @@ public class Technician extends Person{
     private Set<Ticket> tickets= new HashSet<>();
 
     @OneToMany(mappedBy = "technician")
-    private Set<Equipment> equipment= new HashSet<>();
+    private Set<Equipment> equipments= new HashSet<>();
 }
