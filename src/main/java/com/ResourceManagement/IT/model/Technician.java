@@ -15,11 +15,9 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-@Table(name = "Technicians")
-public class Technician {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int technicianId;
+@Table(name = "TECHNICIAN")
+@DiscriminatorValue("technician")
+public class Technician extends Person{
 
 
 

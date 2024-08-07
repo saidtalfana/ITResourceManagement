@@ -16,10 +16,9 @@ import java.util.Set;
 @Getter
 @Entity
 @Table(name = "users")
-public class Admin {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private int adminId;
+@DiscriminatorValue("ADMIN")
+public class Admin extends Person{
+
 
 
     @OneToMany(  mappedBy = "admin")

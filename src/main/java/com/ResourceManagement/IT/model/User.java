@@ -14,16 +14,14 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-public class User extends Person{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+@DiscriminatorValue("USER")
+public class User extends Person {
 
 
 
     @OneToMany(mappedBy = "user")
-    private Set<Ticket> tickets= new HashSet<>();
+    private Set<Ticket> tickets = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
-    private Set<Equipment> Equipements= new HashSet<>();
+    private Set<Equipment> equipments = new HashSet<>();
 }

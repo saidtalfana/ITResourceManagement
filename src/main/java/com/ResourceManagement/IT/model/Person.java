@@ -1,6 +1,5 @@
 package com.ResourceManagement.IT.model;
 
-
 import com.ResourceManagement.IT.enums.Roles;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,20 +13,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Collectors;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @Entity
-
-public class Person implements UserDetails {
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "persons")
+public abstract class Person implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int personId;
+    private int id;
     private String name;
     @Column(unique = true)
     private String username;
@@ -47,14 +45,13 @@ public class Person implements UserDetails {
                 .collect(Collectors.toList());
     }
 
-
     @Override
-   public String getPassword() {
+    public String getPassword() {
         return password;
     }
+
     @Override
     public String getUsername() {
         return username;
     }
-
 }
