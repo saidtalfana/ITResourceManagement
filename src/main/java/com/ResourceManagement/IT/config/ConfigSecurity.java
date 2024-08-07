@@ -37,14 +37,6 @@ public class ConfigSecurity {
                 .authorizeHttpRequests(expressionInterceptUrlRegistry ->
                         expressionInterceptUrlRegistry
                                 .requestMatchers("/api/user/one").permitAll()
-                                .requestMatchers(HttpMethod.DELETE ,  "/api/user/delete/**").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.GET, "/api/events/**").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers(HttpMethod.POST, "/api/reservations/**").hasRole("USER")
-                                .requestMatchers("/api/events/**").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.POST,"/api/contact/**").hasRole("USER")
-                                .requestMatchers(HttpMethod.GET,"/api/contact/get_all").hasRole("ADMIN")
-                                .requestMatchers("/api/contact/**").hasAnyRole("USER","ADMIN")
-                                .requestMatchers("/api/reservations/**").hasAnyRole("USER","ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin.disable());
