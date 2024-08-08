@@ -1,6 +1,8 @@
 package com.ResourceManagement.IT.model;
 
 import com.ResourceManagement.IT.enums.Roles;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,12 +19,22 @@ import java.util.stream.Collectors;
 @Getter
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "person_type")
+@DiscriminatorColumn(name = "person_type") // The column in the database table
+//@JsonTypeInfo(
+//        use = JsonTypeInfo.Id.NAME,
+//        include = JsonTypeInfo.As.PROPERTY,
+//        property = "person_type" // The JSON property name that will be used to determine the type
+//)
+//@JsonSubTypes({
+//        @JsonSubTypes.Type(value = User.class, name = "USER"),
+//        @JsonSubTypes.Type(value = Admin.class, name = "ADMIN"),
+//        @JsonSubTypes.Type(value = Technician.class, name = "TECHNICIAN")
+//})
 public abstract class Person implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
     private String name;
     private String username;
     private String password;

@@ -36,7 +36,9 @@ public class ConfigSecurity {
                                 .requestMatchers("/one").permitAll()
                                 .requestMatchers("/save_user").permitAll()
                                 .requestMatchers("/save_technician").permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers("/save_admin").permitAll()
+                                .requestMatchers("/login").permitAll()
+                                .anyRequest().permitAll()
                 )
                 .formLogin(formLogin -> formLogin.disable());
         http.cors(Customizer.withDefaults());

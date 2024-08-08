@@ -1,5 +1,6 @@
 package com.ResourceManagement.IT.controller;
 
+import com.ResourceManagement.IT.model.Admin;
 import com.ResourceManagement.IT.model.Person;
 import com.ResourceManagement.IT.model.Technician;
 import com.ResourceManagement.IT.model.User;
@@ -23,7 +24,10 @@ public class AdminController {
 
 //    @Autowired
 
-    @
+    @PostMapping("/save_admin")
+    public Person save(@RequestBody Admin admin) {
+        return adminService.addAdmin(admin);
+    }
 
     @PostMapping("/save_user")
     public Person save(@RequestBody User user) {

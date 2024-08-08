@@ -16,11 +16,18 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
 
+
+
     public Person addPerson(User user) {
         Set<Roles> roles = new HashSet<>();
         roles.add(Roles.USER);
         user.setRoles(roles);
         return personRepository.save(user);
+    }
+
+
+    public Person findByUsername(String username) {
+        return personRepository.findByUsername(username);
     }
 }
 

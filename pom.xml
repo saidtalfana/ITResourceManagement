@@ -91,6 +91,12 @@
 			<version>0.12.5</version>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+			<version>3.3.2</version> <!-- Use the version that matches your Spring Boot version -->
+		</dependency>
+
 
 		<!--	<dependency>
                 <groupId>org.modelmapper</groupId>
