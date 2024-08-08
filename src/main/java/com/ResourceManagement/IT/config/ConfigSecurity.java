@@ -33,7 +33,9 @@ public class ConfigSecurity {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(expressionInterceptUrlRegistry ->
                         expressionInterceptUrlRegistry
-                                .requestMatchers("/api/user/one").permitAll()
+                                .requestMatchers("/one").permitAll()
+                                .requestMatchers("/save_user").permitAll()
+                                .requestMatchers("/save_technician").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin.disable());

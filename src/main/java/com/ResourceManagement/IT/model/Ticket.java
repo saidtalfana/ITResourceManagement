@@ -19,7 +19,7 @@ import java.sql.Time;
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int ticketId;
+    private Long ticketId;
     private Date date;
     private Time time;
     private String description;

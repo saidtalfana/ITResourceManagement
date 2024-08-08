@@ -22,9 +22,8 @@ public abstract class Person implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
-    @Column(unique = true)
     private String username;
     private String password;
     private String email;

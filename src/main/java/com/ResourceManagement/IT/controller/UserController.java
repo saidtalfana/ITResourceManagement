@@ -12,25 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-//    @Autowired
-//    private PersonService personService;
-//
-//    @PostMapping("add_user")
-//    public String test(User user) {
-//        personService.addPerson(user);
-//        return "the add user is successful";
-//    }
+    @Autowired
+    private PersonService personService;
 
-    @PostMapping("/one")
-    public User test(@RequestBody User user) {
-         return userService.addUser(user);
+
+
+    @PostMapping("/add_user")
+    public Person test(User user) {
+       return userService.addUser(user);
     }
+
+
 
 }
 

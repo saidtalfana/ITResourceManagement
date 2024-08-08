@@ -18,7 +18,7 @@ import java.util.Set;
 public class Failure {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int failureId;
+    private Long failureId;
     private FailureType failureType;
     private String description;
 

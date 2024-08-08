@@ -19,7 +19,7 @@ import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int equipmentId;
+    private Long equipmentId;
     private String name;
     private String description;
     private String image;
