@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Getter
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "persons")
+@DiscriminatorColumn(name = "person_type")
 public abstract class Person implements UserDetails {
 
     @Id
