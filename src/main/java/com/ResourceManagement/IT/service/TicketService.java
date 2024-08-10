@@ -54,18 +54,21 @@ public class TicketService {
         Ticket updateticket = ticketRepository.findById(id).get();
         Technician technician = technicianRepository.findById(technician_id).get();
         updateticket.setTechnician(technician);
-        updateticket.setTicketStatus(ticket.getTicketStatus());
         return ticketRepository.save(updateticket);
 
     }
 
-    public List<Ticket> getAllTicketsByTechnician(long technician_id) {
+    public List<Ticket> getAllTicketsByTechnician(Long technician_id) {
         return ticketRepository.getTicketsByTechnicianId(technician_id);
     }
 
-    public Ticket updateTicketByTechnician(Ticket ticket, long id){
+    public Ticket updateTicketByTechnician(Ticket ticket, Long id){
         Ticket updateticket = ticketRepository.findById(id).get();
         updateticket.setTicketStatus(ticket.getTicketStatus());
         return ticketRepository.save(updateticket);
+    }
+
+    public List<Ticket> getAllTicketsByUser(Long user_id) {
+        return ticketRepository.getTicketsByUserId(user_id);
     }
 }

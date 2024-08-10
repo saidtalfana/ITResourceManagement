@@ -43,6 +43,7 @@ public class SecurityConfig {
                                 .requestMatchers("api/ticket/update_ticket_admin").hasRole("ADMIN")
                                 .requestMatchers(POST,"/api/ticket/**").hasRole("USER")
                                 .requestMatchers("/api/ticket/update_ticket_technician/**").hasRole("TECHNICIAN")
+                                .requestMatchers("/api/ticket/all_ticket_user_id/**").hasRole("USER")
                                 .requestMatchers("/api/ticket/all_ticket_technician_id/**").hasRole("TECHNICIAN")
                                 .anyRequest().authenticated()
                 )

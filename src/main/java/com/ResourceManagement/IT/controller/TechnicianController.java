@@ -23,7 +23,7 @@ public class TechnicianController {
 
 
     @DeleteMapping("delete_technician/{techinician_id}")
-    public void deleteTechnician(@PathVariable long techinician_id) {
+    public void deleteTechnician(@PathVariable Long techinician_id) {
         technicianService.deleteTechnician(techinician_id);
     }
 

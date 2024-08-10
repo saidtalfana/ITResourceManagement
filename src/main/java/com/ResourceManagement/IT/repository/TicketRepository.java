@@ -9,6 +9,9 @@ import java.util.List;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
-    @Query(value = "select * from Ticket where id=?" , nativeQuery = true)
-    List<Ticket> getTicketsByTechnicianId(long id);
+    @Query(value = "select * from ticket WHERE technician_id =?" , nativeQuery = true)
+    List<Ticket> getTicketsByTechnicianId(Long technician_id);
+
+    @Query(value = "select * from ticket WHERE user_id =?" , nativeQuery = true)
+    List<Ticket> getTicketsByUserId(Long userId);
 }

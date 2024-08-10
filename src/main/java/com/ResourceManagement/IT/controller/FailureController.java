@@ -1,5 +1,6 @@
 package com.ResourceManagement.IT.controller;
 
+import com.ResourceManagement.IT.dto.FailureDto;
 import com.ResourceManagement.IT.model.Failure;
 import com.ResourceManagement.IT.service.FailureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,9 @@ public class FailureController {
     private FailureService failureService;
 
     @PostMapping("/add_failure")
-    public Failure addFailure(@RequestBody Failure failure) {
-        return failureService.addFailure(failure);
+    public FailureDto addFailure(@RequestBody FailureDto failureDto) {
+        return failureService.addFailure(failureDto);
     }
 
-    @GetMapping("/get_failures")
-    public List<Failure> getFailures() {
-        return failureService.getAllFailures();
-    }
+
 }

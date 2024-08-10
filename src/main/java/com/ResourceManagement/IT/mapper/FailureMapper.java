@@ -4,13 +4,16 @@ package com.ResourceManagement.IT.mapper;
 import com.ResourceManagement.IT.dto.FailureDto;
 import com.ResourceManagement.IT.model.Failure;
 import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
 @Mapper()
 public interface FailureMapper {
 
-    Failure toFailureDto(FailureDto failureDto);
+    FailureMapper INSTANCE = Mappers.getMapper(FailureMapper.class);
 
-    FailureDto toFailureEntity(Failure failure);
+    Failure toFailureEntity(FailureDto failureDto);
+
+    FailureDto toFailureDto(Failure failure);
 
 
 

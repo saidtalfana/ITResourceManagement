@@ -36,8 +36,13 @@ public class TicketController {
     }
 
     @GetMapping("/all_ticket_technician_id/{technician_id}")
-    public List<Ticket> getAllTicketByTechnicianId(@PathVariable long technician_id){
+    public List<Ticket> getAllTicketByTechnicianId(@PathVariable Long technician_id){
         return ticketService.getAllTicketsByTechnician(technician_id);
+    }
+
+    @GetMapping("/all_ticket_user_id/{user_id}")
+    public List<Ticket> getAllTicketByUserId(@PathVariable Long user_id){
+        return ticketService.getAllTicketsByUser(user_id);
     }
 
     @PutMapping("/update_ticket_technician/{id}")
