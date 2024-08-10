@@ -1,5 +1,7 @@
 package com.ResourceManagement.IT.config;
 
+import com.ResourceManagement.IT.config.JwtAuth;
+import com.ResourceManagement.IT.service.UserDetailsImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
@@ -17,6 +19,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
+    public JwtAuthorizationFilter(UserDetailsImpl userDetailsService) {
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorizationToken = request.getHeader("Authorization");
@@ -49,5 +54,3 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         }
     }
 }
-
-

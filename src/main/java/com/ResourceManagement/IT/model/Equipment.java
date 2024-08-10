@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 
+import java.util.Set;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -40,9 +42,9 @@ public class Equipment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "technician_id")
-    private Technician technician;
+
+    @ManyToMany(mappedBy = "equipment")
+    Set<Failure> failures;
 
 
 

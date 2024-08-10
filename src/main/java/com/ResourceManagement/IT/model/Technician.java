@@ -23,6 +23,5 @@ public class Technician extends Person{
     @OneToMany(mappedBy = "technician")
     private Set<Ticket> tickets= new HashSet<>();
 
-    @OneToMany(mappedBy = "technician")
-    private Set<Equipment> equipments= new HashSet<>();
+
 }

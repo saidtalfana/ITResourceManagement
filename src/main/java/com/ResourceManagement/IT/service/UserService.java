@@ -1,8 +1,7 @@
 package com.ResourceManagement.IT.service;
 
-import com.ResourceManagement.IT.enums.Roles;
+import com.ResourceManagement.IT.enums.Role;
 import com.ResourceManagement.IT.model.User;
-import com.ResourceManagement.IT.repository.EquipmentRepository;
 import com.ResourceManagement.IT.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,8 +24,8 @@ public class UserService {
     public User  addUser(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Set<Roles> role = new HashSet<Roles>();
-     role.add(Roles.USER);
+        Set<Role> role = new HashSet<Role>();
+     role.add(Role.USER);
       user.setRoles(role);
         return UserRepository.save(user);
     }

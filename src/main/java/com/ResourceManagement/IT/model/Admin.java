@@ -20,6 +20,6 @@ public class Admin extends Person{
 
 
 
-    @OneToMany(  mappedBy = "admin")
+    @OneToMany(mappedBy = "admin")
     private Set<Equipment> equipment= new HashSet<>();
 }

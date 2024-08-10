@@ -22,7 +22,12 @@ public class AdminController {
     @Autowired
     private TechnicianService technicianService;
 
-//    @Autowired
+
+    @GetMapping("/string")
+    public String test(){
+        return "test";
+    }
+
 
     @PostMapping("/save_admin")
     public Person save(@RequestBody Admin admin) {
@@ -33,6 +38,7 @@ public class AdminController {
     public Person save(@RequestBody User user) {
         return userService.addUser(user);
     }
+
     @PostMapping("/save_technician")
     public Person save(@RequestBody Technician technician) {
         return technicianService.addTechnician(technician);

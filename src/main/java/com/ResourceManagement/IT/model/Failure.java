@@ -25,4 +25,11 @@ public class Failure {
  @OneToMany(mappedBy = "failure")
     private Set<Ticket> tickets;
 
+    @ManyToMany
+    @JoinTable(
+            name = "equipment_failures",
+            joinColumns = @JoinColumn(name = "failure_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipment_id"))
+    Set<Equipment> equipment;
+
 }

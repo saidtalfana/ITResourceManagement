@@ -1,14 +1,11 @@
 package com.ResourceManagement.IT.model;
 
-import com.ResourceManagement.IT.enums.Roles;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.ResourceManagement.IT.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,7 +27,7 @@ import java.util.stream.Collectors;
 //        @JsonSubTypes.Type(value = Admin.class, name = "ADMIN"),
 //        @JsonSubTypes.Type(value = Technician.class, name = "TECHNICIAN")
 //})
-public abstract class Person implements UserDetails {
+public class Person implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,10 +38,10 @@ public abstract class Person implements UserDetails {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    @ElementCollection(targetClass = Roles.class)
+    @ElementCollection(targetClass = Role.class)
     @CollectionTable(name = "person_roles", joinColumns = @JoinColumn(name = "person_id"))
     @Column(name = "roles")
-    private Set<Roles> roles;
+    private Set<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

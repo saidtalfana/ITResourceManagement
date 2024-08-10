@@ -1,6 +1,6 @@
 package com.ResourceManagement.IT.service;
 
-import com.ResourceManagement.IT.enums.Roles;
+import com.ResourceManagement.IT.enums.Role;
 import com.ResourceManagement.IT.model.Technician;
 import com.ResourceManagement.IT.model.User;
 import com.ResourceManagement.IT.repository.EquipmentRepository;
@@ -22,8 +22,8 @@ public class TechnicianService {
 
     public Technician addTechnician(Technician technician) {
         technician.setPassword(passwordEncoder.encode(technician.getPassword()));
-        Set<Roles> role = new HashSet<Roles>();
-        role.add(Roles.TECHNICIAN);
+        Set<Role> role = new HashSet<>();
+        role.add(Role.TECHNICIAN);
         technician.setRoles(role);
         return technicianRepository.save(technician);
     }

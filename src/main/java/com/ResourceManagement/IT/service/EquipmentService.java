@@ -19,11 +19,10 @@ public class EquipmentService {
     @Autowired
     private UserRepository userRepository;
 
-    public Equipment addEquipment(Equipment equipment,Long user_id) {
-        User user = userRepository.findById(user_id).get();
-        equipment.setUser(user);
-        return equipmentRepository.save(equipment);
-    }
+//    public Equipment addEquipment(Equipment equipment) {
+//
+//        return equipmentRepository.save(equipment);
+//    }
 
     public List<Equipment> getAllEquipment() {
         return equipmentRepository.findAll();
@@ -32,8 +31,8 @@ public class EquipmentService {
         return equipmentRepository.findEquipmentByUserId(user_id);
     }
 
-    public void deleteEquipmentById(Long equi_id) {
-        equipmentRepository.deleteById(equi_id);
+    public void deleteEquipmentById(Long equipment_id) {
+        equipmentRepository.deleteById(equipment_id);
     }
 
     public Equipment updateEquipment(Equipment equipment,Long id) {
