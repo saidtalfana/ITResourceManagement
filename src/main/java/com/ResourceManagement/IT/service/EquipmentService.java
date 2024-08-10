@@ -19,16 +19,16 @@ public class EquipmentService {
     @Autowired
     private UserRepository userRepository;
 
-//    public Equipment addEquipment(Equipment equipment) {
-//
-//        return equipmentRepository.save(equipment);
-//    }
-
-    public List<Equipment> getAllEquipment() {
-        return equipmentRepository.findAll();
+    public Equipment addEquipment(Equipment equipment,Long user_id) {
+        User user = userRepository.findById(user_id).get();
+        equipment.setUser(user);
+        return equipmentRepository.save(equipment);
     }
-    public List<Equipment> getEquipmentByUserId(Long user_id) {
-        return equipmentRepository.findEquipmentByUserId(user_id);
+
+    public List<Equipment> getAllEquipment() {return equipmentRepository.findAll();
+    }
+    public List<Equipment> getEquipmentsByUserId(Long user_id) {
+        return equipmentRepository.getAllEquipmentByUserId(user_id);
     }
 
     public void deleteEquipmentById(Long equipment_id) {

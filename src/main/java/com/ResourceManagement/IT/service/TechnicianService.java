@@ -20,13 +20,7 @@ public class TechnicianService {
     @Autowired
     private TechnicianRepository technicianRepository;
 
-    public Technician addTechnician(Technician technician) {
-        technician.setPassword(passwordEncoder.encode(technician.getPassword()));
-        Set<Role> role = new HashSet<>();
-        role.add(Role.TECHNICIAN);
-        technician.setRoles(role);
-        return technicianRepository.save(technician);
-    }
+
 
 
 

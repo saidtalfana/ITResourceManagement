@@ -1,7 +1,6 @@
 package com.ResourceManagement.IT.config;
 
-
-import com.ResourceManagement.IT.service.UserDetailsImpl;
+import com.ResourceManagement.IT.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,17 +10,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
 
-import static org.springframework.http.HttpMethod.*;
+import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
 @EnableWebSecurity
-public class ConfigSecurity {
+public class SecurityConfig {
 
-    private final UserDetailsImpl userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
-    public ConfigSecurity(UserDetailsImpl userDetailsService) {
+    public SecurityConfig(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -37,24 +35,20 @@ public class ConfigSecurity {
                 .authorizeHttpRequests(expressionInterceptUrlRegistry ->
                         expressionInterceptUrlRegistry
                                 .requestMatchers("/login").permitAll()
-//                                .requestMatchers("/api/user/**").hasRole(Roles.ROLE_ADMIN.name())
-                                .requestMatchers("/save_user").permitAll()
-                                .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                                .requestMatchers(POST,"/api/equipment/add_equipment/**").hasRole("ADMIN")
-                                .requestMatchers("/api/technician/**").hasRole("ADMIN")
-                                .requestMatchers("/api/failure/**").hasRole("ADMIN")
-                                .requestMatchers("/test").hasRole("USER")
+                                .requestMatchers("/signup/**").permitAll()
+                                .requestMatchers("/api/equipment/**").hasRole("ADMIN")
+                                .requestMatchers("/api/user/**").hasRole("ADMIN")
+                                .requestMatchers("api/technician/**").hasRole("ADMIN")
+                                .requestMatchers("api/ticket/update_ticket_admin").hasRole("ADMIN")
                                 .requestMatchers(POST,"/api/ticket/**").hasRole("USER")
-                                .requestMatchers(PUT,"/api/ticket/**").hasAnyRole("TECHNICIAN","ADMIN")
-                                .requestMatchers(GET,"/api/ticket/**").hasAnyRole("ADMIN","TECHNICIAN","USER")
+                                .requestMatchers("/api/ticket/update_ticket_technician/**").hasRole("TECHNICIAN")
+                                .requestMatchers("/api/ticket/all_ticket_technician_id/**").hasRole("TECHNICIAN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin.disable())
-                .cors(cors -> cors.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()));
-        http.addFilterBefore(new JwtAuthorizationFilter(userDetailsService), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtAuthorizationFilter(userDetailsService), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
@@ -62,8 +56,4 @@ public class ConfigSecurity {
         authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
         return authenticationManagerBuilder.build();
     }
-
-
 }
-
-

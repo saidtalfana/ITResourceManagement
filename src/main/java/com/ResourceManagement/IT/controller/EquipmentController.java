@@ -15,19 +15,19 @@ public class EquipmentController {
     private EquipmentService equipmentService;
 
 
-//    @PostMapping("/add_equipment}")
-//    public Equipment addEquipment(@RequestBody Equipment equipment) {
-//        return equipmentService.addEquipment(equipment);
-//    }
+    @PostMapping("/add_equipment")
+    public Equipment addEquipment(@RequestBody Equipment equipment,@RequestParam long user_id) {
+        return equipmentService.addEquipment(equipment, user_id);
+    }
 
     @GetMapping("/all_equipment")
     public List<Equipment> getAllEquipment() {
         return equipmentService.getAllEquipment();
     }
 
-    @DeleteMapping("/delete_equipment/{user_id}")
-    public void deleteEquipment(@PathVariable long user_id) {
-        equipmentService.deleteEquipmentById(user_id);
+    @DeleteMapping("/delete_equipment/{id}")
+    public void deleteEquipment(@PathVariable long id) {
+        equipmentService.deleteEquipmentById(id);
     }
 
     @PutMapping("/update_equipment/{equipment_id}")

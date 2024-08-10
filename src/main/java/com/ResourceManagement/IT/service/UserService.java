@@ -13,22 +13,10 @@ import java.util.Set;
 
 @Service
 public class UserService {
-    @Autowired
-    private UserRepository UserRepository;
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+
     @Autowired
     private UserRepository userRepository;
 
-
-    public User  addUser(User user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        Set<Role> role = new HashSet<Role>();
-     role.add(Role.USER);
-      user.setRoles(role);
-        return UserRepository.save(user);
-    }
 
     public void deleteUser(long id){
             userRepository.deleteById(id);

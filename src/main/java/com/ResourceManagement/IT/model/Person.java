@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,26 +38,40 @@ public class Person implements UserDetails {
     private String password;
     private String email;
 
+//    @Enumerated(EnumType.STRING)
+//    @ElementCollection(targetClass = Role.class)
+//    @CollectionTable(name = "person_roles", joinColumns = @JoinColumn(name = "person_id"))
+//    @Column(name = "roles")
+//    private Set<Role> roles;
+
     @Enumerated(EnumType.STRING)
-    @ElementCollection(targetClass = Role.class)
-    @CollectionTable(name = "person_roles", joinColumns = @JoinColumn(name = "person_id"))
-    @Column(name = "roles")
-    private Set<Role> roles;
+    private Role roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getAuthority()))
-                .collect(Collectors.toList());
+        System.out.println("////////////////////////////");
+        System.out.println("////////::rolee"+roles);
+
+        return List.of(new SimpleGrantedAuthority("ROLE_" + roles));
     }
 
     @Override
-    public String getPassword() {
-        return password;
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
     }
 
     @Override
-    public String getUsername() {
-        return username;
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
     }
 }

@@ -9,28 +9,41 @@ import com.ResourceManagement.IT.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@RequestMapping("/api/ticket")
 public class TicketController {
 
     @Autowired
     private TicketService ticketService;
 
 
-    @GetMapping("/test")
-    public String test(){
-        return "said every thing will be ok";
-    }
 
-    @PostMapping("/add_ticket/{equipment_id}/{failure_id}/{user_id}")
+
+    @PostMapping("/add_ticket")
     public Ticket addTicket(@RequestBody Ticket ticket,
-                            @PathVariable long equipment_id,
-                            @PathVariable long failure_id,
-                            @PathVariable long user_id) {
+                            @RequestParam long equipment_id,
+                            @RequestParam long failure_id,
+                            @RequestParam long user_id) {
 
         return ticketService.addTicket(ticket,equipment_id,failure_id,user_id);
     }
 
+    @PutMapping("/update_ticket_admin")
+    public Ticket updateTicketByAdmin(@RequestBody Ticket ticket,@PathVariable long id){
+        return ticketService.updateTicketByAdmin(ticket,id);
+    }
 
+    @GetMapping("/all_ticket_technician_id/{technician_id}")
+    public List<Ticket> getAllTicketByTechnicianId(@PathVariable long technician_id){
+        return ticketService.getAllTicketsByTechnician(technician_id);
+    }
+
+    @PutMapping("/update_ticket_technician/{id}")
+    public Ticket updateTicketByTechnician(@RequestBody Ticket ticket,@PathVariable long id){
+        return ticketService.updateTicketByTechnician(ticket,id);
+    }
 
 
 }
