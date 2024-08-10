@@ -41,6 +41,7 @@ public class EquipmentService {
         updateEquipment.setDescription(equipment.getDescription());
         updateEquipment.setImage(equipment.getImage());
         updateEquipment.setType(equipment.getType());
+        updateEquipment.setUser(equipment.getUser());
         updateEquipment.setEquipmentStatus(equipment.getEquipmentStatus());
         return equipmentRepository.save(updateEquipment);
 

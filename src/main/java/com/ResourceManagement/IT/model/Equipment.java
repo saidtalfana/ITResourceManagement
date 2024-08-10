@@ -3,6 +3,7 @@ package com.ResourceManagement.IT.model;
 
 import com.ResourceManagement.IT.enums.EquipmentStatus;
 import com.ResourceManagement.IT.model.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,12 +35,12 @@ public class Equipment {
     @JoinColumn(name = "admin_id")
      private Admin admin;
 
-    @ManyToOne
-    @JoinColumn(name = "ticket_id")
-    private Ticket ticket;
+    @OneToMany(mappedBy = "equipment")
+    private Set <Ticket> tickets;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
 

@@ -35,8 +35,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(expressionInterceptUrlRegistry ->
                         expressionInterceptUrlRegistry
                                 .requestMatchers("/login").permitAll()
-                                .requestMatchers("/signup/**").permitAll()
+                                .requestMatchers("/signup/**").hasRole("ADMIN")
                                 .requestMatchers("/api/equipment/**").hasRole("ADMIN")
+                                .requestMatchers("/api/failure/**").hasRole("ADMIN")
                                 .requestMatchers("/api/user/**").hasRole("ADMIN")
                                 .requestMatchers("api/technician/**").hasRole("ADMIN")
                                 .requestMatchers("api/ticket/update_ticket_admin").hasRole("ADMIN")

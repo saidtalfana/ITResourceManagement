@@ -1,6 +1,7 @@
 package com.ResourceManagement.IT.model;
 
 import com.ResourceManagement.IT.enums.FailureType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,9 +24,11 @@ public class Failure {
     private String description;
 
  @OneToMany(mappedBy = "failure")
+ @JsonIgnore
     private Set<Ticket> tickets;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name = "equipment_failures",
             joinColumns = @JoinColumn(name = "failure_id"),

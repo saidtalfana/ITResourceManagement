@@ -1,6 +1,7 @@
 package com.ResourceManagement.IT.model;
 
 import com.ResourceManagement.IT.enums.TicketStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,11 +30,13 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
 
     @ManyToOne
     @JoinColumn(name = "failure_id")
+    @JsonIgnore
     private Failure failure;
 
     @ManyToOne
@@ -42,6 +45,7 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "equipment_id")
+    @JsonIgnore
     private Equipment equipment;
 
 }

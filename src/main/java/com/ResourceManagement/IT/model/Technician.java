@@ -1,6 +1,7 @@
 package com.ResourceManagement.IT.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Technician extends Person{
 
 
     @OneToMany(mappedBy = "technician")
+    @JsonIgnore
     private Set<Ticket> tickets= new HashSet<>();
 
 

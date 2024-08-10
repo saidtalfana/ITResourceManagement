@@ -16,8 +16,8 @@ public class TechnicianController {
     private TechnicianService technicianService;
 
 
-    @PostMapping("/all_technician")
-    private List<Technician> getTechnician(@RequestBody Technician technician) {
+    @GetMapping("/all_technician")
+    private List<Technician> getTechnician() {
         return technicianService.getAllTechnicians();
     }
 

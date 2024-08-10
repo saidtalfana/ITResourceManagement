@@ -23,16 +23,16 @@ public class TicketController {
 
     @PostMapping("/add_ticket")
     public Ticket addTicket(@RequestBody Ticket ticket,
-                            @RequestParam long equipment_id,
-                            @RequestParam long failure_id,
-                            @RequestParam long user_id) {
+                            @RequestParam Long equipment_id,
+                            @RequestParam Long failure_id,
+                            @RequestParam Long user_id) {
 
         return ticketService.addTicket(ticket,equipment_id,failure_id,user_id);
     }
 
-    @PutMapping("/update_ticket_admin")
-    public Ticket updateTicketByAdmin(@RequestBody Ticket ticket,@PathVariable long id){
-        return ticketService.updateTicketByAdmin(ticket,id);
+    @PutMapping("/update_ticket_admin/{id}")
+    public Ticket updateTicketByAdmin(@RequestBody Ticket ticket,@PathVariable Long id,@RequestParam Long technician_id){
+        return ticketService.updateTicketByAdmin(ticket,id,technician_id);
     }
 
     @GetMapping("/all_ticket_technician_id/{technician_id}")
