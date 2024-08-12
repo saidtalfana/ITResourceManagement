@@ -30,7 +30,7 @@ public class PersonController {
 
 
 
-    @PostMapping("signup")
+    @PostMapping("/signup")
     public ResponseEntity<Person> signUp(@RequestParam Role role, @RequestBody SignupRequest signUpRequest) {
         Person createPerson = personService.signUp(role, signUpRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createPerson);
@@ -47,6 +47,7 @@ public class PersonController {
         String token = JwtAuth.generateToken(person.getUsername(), person.getRoles());
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
+
         return ResponseEntity.ok(response);
     }
 }

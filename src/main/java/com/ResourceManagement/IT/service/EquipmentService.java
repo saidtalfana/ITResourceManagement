@@ -35,16 +35,20 @@ public class EquipmentService {
         equipmentRepository.deleteById(equipment_id);
     }
 
-    public Equipment updateEquipment(Equipment equipment,Long id) {
+    public Equipment updateEquipment(Equipment equipment,Long id,Long user_id) {
         Equipment updateEquipment = equipmentRepository.findById(id).get();
         updateEquipment.setName(equipment.getName());
         updateEquipment.setDescription(equipment.getDescription());
         updateEquipment.setImage(equipment.getImage());
         updateEquipment.setType(equipment.getType());
-        updateEquipment.setUser(equipment.getUser());
+        User user = userRepository.findById(user_id).get();
+        updateEquipment.setUser(user);
         updateEquipment.setEquipmentStatus(equipment.getEquipmentStatus());
         return equipmentRepository.save(updateEquipment);
 
     }
 
+    public Equipment getEquipment(Long equipmentId) {
+        return equipmentRepository.findById(equipmentId).get();
+    }
 }

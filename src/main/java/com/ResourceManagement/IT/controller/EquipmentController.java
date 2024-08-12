@@ -16,8 +16,13 @@ public class EquipmentController {
 
 
     @PostMapping("/add_equipment")
-    public Equipment addEquipment(@RequestBody Equipment equipment,@RequestParam long user_id) {
+    public Equipment addEquipment(@RequestBody Equipment equipment,@RequestParam Long user_id) {
         return equipmentService.addEquipment(equipment, user_id);
+    }
+
+    @GetMapping("/get_equipment/{equipement_id}")
+    public Equipment getEquipment(@PathVariable Long equipment_id) {
+        return equipmentService.getEquipment(equipment_id);
     }
 
     @GetMapping("/all_equipment")
@@ -31,7 +36,7 @@ public class EquipmentController {
     }
 
     @PutMapping("/update_equipment/{equipment_id}")
-    public Equipment updateEquipment(@RequestBody Equipment equipment,@PathVariable long equipment_id) {
-        return equipmentService.updateEquipment(equipment,equipment_id);
+    public Equipment updateEquipment(@RequestBody Equipment equipment,@PathVariable Long equipment_id,@RequestParam Long user_id) {
+        return equipmentService.updateEquipment(equipment,equipment_id,user_id);
     }
 }
