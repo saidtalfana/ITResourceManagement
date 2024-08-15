@@ -35,7 +35,8 @@ public class EquipmentService {
         equipmentRepository.deleteById(equipment_id);
     }
 
-    public Equipment updateEquipment(Equipment equipment,Long id,Long user_id) {
+    public Equipment
+    updateEquipment(Equipment equipment,Long id,Long user_id) {
         Equipment updateEquipment = equipmentRepository.findById(id).get();
         updateEquipment.setName(equipment.getName());
         updateEquipment.setDescription(equipment.getDescription());
@@ -48,7 +49,7 @@ public class EquipmentService {
 
     }
 
-    public Equipment getEquipment(Long equipmentId) {
-        return equipmentRepository.findById(equipmentId).get();
+    public Equipment getEquipment(Long userId) {
+        return equipmentRepository.findById(userId).get();
     }
 }

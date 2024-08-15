@@ -35,7 +35,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 Claims claims = Jwts.parser().setSigningKey(SECRET_KEY).build().parseClaimsJws(jwt).getBody();
                 String username = claims.getSubject();
                 System.out.println("/////////"+username);
-                System.out.println("daaaz lhnaaa");
+                System.out.println("hello");
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());

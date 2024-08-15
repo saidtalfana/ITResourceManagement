@@ -29,10 +29,18 @@ public class TicketController {
 
         return ticketService.addTicket(ticket,equipment_id,failure_id,user_id);
     }
+    @GetMapping("/all_ticket")
+    public List<Ticket> getAllTicket() {
+        return ticketService.allTickets();
+    }
+     @GetMapping("/get_ticket/{ticket_id}")
+     public Ticket getTicket(@PathVariable Long ticket_id) {
+        return ticketService.getTicket(ticket_id);
 
+     }
     @PutMapping("/update_ticket_admin/{id}")
-    public Ticket updateTicketByAdmin(@RequestBody Ticket ticket,@PathVariable Long id,@RequestParam Long technician_id){
-        return ticketService.updateTicketByAdmin(ticket,id,technician_id);
+    public Ticket updateTicketByAdmin(@PathVariable Long id,@RequestParam Long technician_id){
+        return ticketService.updateTicketByAdmin(id,technician_id);
     }
 
     @GetMapping("/all_ticket_technician_id/{technician_id}")
@@ -46,7 +54,7 @@ public class TicketController {
     }
 
     @PutMapping("/update_ticket_technician/{id}")
-    public Ticket updateTicketByTechnician(@RequestBody Ticket ticket,@PathVariable long id){
+    public Ticket updateTicketByTechnician(@RequestBody Ticket ticket,@PathVariable Long id){
         return ticketService.updateTicketByTechnician(ticket,id);
     }
 

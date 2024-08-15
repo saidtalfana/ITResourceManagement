@@ -50,7 +50,7 @@ public class TicketService {
     }
 
 
-    public Ticket updateTicketByAdmin(Ticket ticket, Long id,Long technician_id){
+    public Ticket updateTicketByAdmin(Long id,Long technician_id){
         Ticket updateticket = ticketRepository.findById(id).get();
         Technician technician = technicianRepository.findById(technician_id).get();
         updateticket.setTechnician(technician);
@@ -70,5 +70,13 @@ public class TicketService {
 
     public List<Ticket> getAllTicketsByUser(Long user_id) {
         return ticketRepository.getTicketsByUserId(user_id);
+    }
+
+    public List<Ticket> allTickets() {
+        return ticketRepository.findAll();
+    }
+
+    public Ticket getTicket(Long ticketId) {
+        return ticketRepository.findById(ticketId).get();
     }
 }

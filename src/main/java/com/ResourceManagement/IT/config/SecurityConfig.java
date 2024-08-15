@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.*;
 
 @Configuration
 @EnableWebSecurity
@@ -36,13 +36,15 @@ public class SecurityConfig {
                         expressionInterceptUrlRegistry
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers("/signup/**").hasRole("ADMIN")
-                                .requestMatchers("/api/equipment/**").hasRole("ADMIN")
+                                .requestMatchers("/api/equipment/**").hasAnyRole("ADMIN", "USER")
+                                .requestMatchers(GET,"/api/failure/**").hasRole("USER")
                                 .requestMatchers("/api/failure/**").hasRole("ADMIN")
                                 .requestMatchers("/api/user/**").hasRole("ADMIN")
                                 .requestMatchers("api/technician/**").hasRole("ADMIN")
                                 .requestMatchers("api/ticket/update_ticket_admin").hasRole("ADMIN")
+                                .requestMatchers(GET,"/api/ticket/**").hasAnyRole("USER" , "ADMIN","TECHNICIAN")
                                 .requestMatchers(POST,"/api/ticket/**").hasRole("USER")
-                                .requestMatchers("/api/ticket/update_ticket_technician/**").hasRole("TECHNICIAN")
+                                .requestMatchers("/api/ticket/**").hasAnyRole("ADMIN","TECHNICIAN")
                                 .requestMatchers("/api/ticket/all_ticket_user_id/**").hasRole("USER")
                                 .requestMatchers("/api/ticket/all_ticket_technician_id/**").hasRole("TECHNICIAN")
                                 .anyRequest().authenticated()

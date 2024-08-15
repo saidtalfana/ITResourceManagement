@@ -11,5 +11,5 @@ import java.util.List;
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 
  @Query(value = "select * from equipment where user_id=?" , nativeQuery = true)
-    List<Equipment> getAllEquipmentByUserId(Long userId);
+    List<Equipment> getAllEquipmentByUserId(Long user_id);
 }

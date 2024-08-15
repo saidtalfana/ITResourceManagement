@@ -21,4 +21,8 @@ public class FailureService {
         return failureMapper.toFailureDto(savedFailure);
 
     }
+
+    public List<Failure> getAllFailure() {
+        return failureRepository.findAll();
+    }
 }

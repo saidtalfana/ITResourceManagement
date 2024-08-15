@@ -44,7 +44,8 @@ public class PersonController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         Person person = personService.findByUsername(loginRequest.getUsername());
-        String token = JwtAuth.generateToken(person.getUsername(), person.getRoles());
+
+        String token = JwtAuth.generateToken(person.getUsername(), person.getRoles(),person.getId());
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
 

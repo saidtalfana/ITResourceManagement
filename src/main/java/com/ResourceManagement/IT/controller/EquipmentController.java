@@ -20,12 +20,16 @@ public class EquipmentController {
         return equipmentService.addEquipment(equipment, user_id);
     }
 
-    @GetMapping("/get_equipment/{equipement_id}")
-    public Equipment getEquipment(@PathVariable Long equipment_id) {
-        return equipmentService.getEquipment(equipment_id);
+    @GetMapping("/get_equipment/{id}")
+    public Equipment getEquipment(@PathVariable Long id) {
+        return equipmentService.getEquipment(id);
+    }
+    @GetMapping("/get_equipment_by_user_id/{user_id}")
+    public List<Equipment> getEquipmentsByUserId(@PathVariable Long user_id) {
+        return equipmentService.getEquipmentsByUserId(user_id);
     }
 
-    @GetMapping("/all_equipment")
+    @GetMapping("all_equipment")
     public List<Equipment> getAllEquipment() {
         return equipmentService.getAllEquipment();
     }

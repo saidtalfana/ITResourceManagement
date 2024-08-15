@@ -20,5 +20,8 @@ public class FailureController {
         return failureService.addFailure(failureDto);
     }
 
-
+    @GetMapping("/all_failure")
+    public List<Failure> getAllFailure() {
+        return failureService.getAllFailure();
+    }
 }
