@@ -72,7 +72,6 @@ public class UserServiceTest {
 
         User result = userService.updateUser(updatedUser, testUser.getId());
 
-        // Assert results
         assertNotNull(result);
         assertEquals("youssef", result.getName());
         assertEquals("talfanayoussef", result.getUsername());
