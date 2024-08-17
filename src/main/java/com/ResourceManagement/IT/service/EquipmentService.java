@@ -1,5 +1,6 @@
 package com.ResourceManagement.IT.service;
 
+import com.ResourceManagement.IT.exception.ResourceNotFoundException;
 import com.ResourceManagement.IT.model.Equipment;
 import com.ResourceManagement.IT.model.User;
 import com.ResourceManagement.IT.repository.AdminRepository;
@@ -40,7 +41,6 @@ public class EquipmentService {
         Equipment updateEquipment = equipmentRepository.findById(id).get();
         updateEquipment.setName(equipment.getName());
         updateEquipment.setDescription(equipment.getDescription());
-        updateEquipment.setImage(equipment.getImage());
         updateEquipment.setType(equipment.getType());
         User user = userRepository.findById(user_id).get();
         updateEquipment.setUser(user);
@@ -50,6 +50,6 @@ public class EquipmentService {
     }
 
     public Equipment getEquipment(Long userId) {
-        return equipmentRepository.findById(userId).get();
+        return equipmentRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Equipment not found"));
     }
 }

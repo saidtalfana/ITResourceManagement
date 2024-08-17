@@ -13,16 +13,19 @@ import java.util.List;
 public class FailureService {
     @Autowired
     private FailureRepository failureRepository;
+
+
     private final FailureMapper failureMapper = FailureMapper.INSTANCE;
 
-    public FailureDto addFailure(FailureDto failureDto) {
+    public Failure addFailure(FailureDto failureDto) {
         Failure failure = failureMapper.toFailureEntity(failureDto);
         Failure savedFailure = failureRepository.save(failure);
-        return failureMapper.toFailureDto(savedFailure);
-
+        return savedFailure;
     }
 
-    public List<Failure> getAllFailure() {
-        return failureRepository.findAll();
+    public List<FailureDto> getAllFailure() {
+        List<Failure> allFailure = failureRepository.findAll();
+        return failureMapper.toFailureDtoList(allFailure);
+
     }
 }

@@ -25,7 +25,6 @@ public class Equipment {
     private Long equipmentId;
     private String name;
     private String description;
-    private String image;
     private String type;
     private EquipmentStatus equipmentStatus;
 

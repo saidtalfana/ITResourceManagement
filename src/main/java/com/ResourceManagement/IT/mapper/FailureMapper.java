@@ -6,6 +6,8 @@ import com.ResourceManagement.IT.model.Failure;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper()
 public interface FailureMapper {
 
@@ -14,6 +16,8 @@ public interface FailureMapper {
     Failure toFailureEntity(FailureDto failureDto);
 
     FailureDto toFailureDto(Failure failure);
+
+    List<FailureDto> toFailureDtoList(List<Failure> failures);
 
 
 

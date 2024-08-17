@@ -16,12 +16,12 @@ public class FailureController {
     private FailureService failureService;
 
     @PostMapping("/add_failure")
-    public FailureDto addFailure(@RequestBody FailureDto failureDto) {
+    public Failure addFailure(@RequestBody FailureDto failureDto) {
         return failureService.addFailure(failureDto);
     }
 
     @GetMapping("/all_failure")
-    public List<Failure> getAllFailure() {
+    public List<FailureDto> getAllFailure() {
         return failureService.getAllFailure();
     }
 }
